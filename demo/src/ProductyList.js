@@ -5,7 +5,7 @@ export default class ProductyList extends Component {
   render() {
     return (
       <div>
-        <h3>Producty List</h3>
+        <h2>{this.props.info.title}</h2>
         <ListGroup>
           <ListGroupItem>Cras justo odio</ListGroupItem>
           <ListGroupItem active>Dapibus ac facilisis in</ListGroupItem>
