@@ -1,30 +1,36 @@
-import React from "react";
+import React, { Component } from "react";
 import Navi from "./Navi";
 import CategoryList from "./CategoryList";
 import ProductyList from "./ProductyList";
 import { Container, Row, Col } from "reactstrap";
 
-function App() {
-  const ProductInfo ={title:"ProductList", BaskaBirSey:"Baska Sey"}
-  let CategoryInfo ={title:"CategoryList"}
-  
-  return (
+
+export default class App extends Component {
+
+  state={currentCategory: ""}
+
+  changeCategory = category => {
+    this.setState({ currentCategory: category.categoryName });
+  };
+  render() {
+    let ProductInfo = { title: "ProductList"};
+    let CategoryInfo ={ title: "CategoryList"};    
+
+  return {
     <div>
       <Container>
         <Row>
-          <Navi title="Navi"/>
+          <Navi />
         </Row>
         <Row>
           <Col xs="3">
-            <ProductyList info={ProductInfo} />
+           <CategoryList currentCategory={this.state.currentCategory} 
+           changeCategory={this.changeCategory} info={CategoryInfo} />
           </Col>
           <Col xs="9">
-            <CategoryList info={CategoryInfo} />
+          <ProductyList currentCategory={this.state.currentCategory} info={ProductInfo} />
           </Col>
         </Row>
       </Container>
     </div>
-  );
-}
-
-export default App;
+  };
